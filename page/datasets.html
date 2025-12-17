@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据集中心 - 智汇学阁</title>
+    <link rel="icon" href="../images/logo_1.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+        window.PAGE_CONFIG = {
+            rootPath: '../',
+            activePage: 'datasets'
+        };
+    </script>
+    <script src="../js/layout.js"></script>
+    <main class="container">
+        <header class="page-header">
+            <h1>数据集中心</h1>
+            <p>提供结构化数据资源，助力爬虫练习与数据分析研究</p>
+        </header>
+        <!-- 爬虫数据集 -->
+        <div class="dataset-group">
+            <h2 class="section-title">爬虫专用数据集</h2>
+            <a href="datasets/crawler/swimming.html" class="dataset-link-card">
+                <div class="dataset-info">
+                    <h3>第十五届全运会游泳项目</h3>
+                    <p>包含团体及单项决赛排名数据。</p>
+                </div>
+                <div class="arrow-icon">➜</div>
+            </a>
+            <a href="datasets/crawler/rhythmic_gymnastics.html" class="dataset-link-card">
+                <div class="dataset-info">
+                    <h3>第十五届全运会艺术体操项目</h3>
+                    <p>包含各单项决赛排名数据。</p>
+                </div>
+                <div class="arrow-icon">➜</div>
+            </a>
+            <a href="datasets/crawler/table_tennis.html" class="dataset-link-card">
+                <div class="dataset-info">
+                    <h3>第十五届全运会乒乓球项目</h3>
+                    <p>包含团体及单项决赛排名数据。</p>
+                </div>
+                <div class="arrow-icon">➜</div>
+            </a>
+        </div>
+        <!-- 预留/其他数据集 -->
+        <div class="dataset-group">
+            <h2 class="section-title">数据分析与机器学习 (Coming Soon)</h2>
+            <div class="dataset-link-card" style="opacity: 0.6; cursor: default;">
+                <div class="dataset-info">
+                    <h3>电商销售数据 (示例)</h3>
+                    <p>包含商品信息、销售记录的 CSV 数据集。</p>
+                </div>
+                <div class="tag">待上线</div>
+            </div>
+            <div class="dataset-link-card" style="opacity: 0.6; cursor: default;">
+                <div class="dataset-info">
+                    <h3>图像分类数据集 (示例)</h3>
+                    <p>用于深度学习图像识别训练的标准数据集。</p>
+                </div>
+                <div class="tag">待上线</div>
+            </div>
+        </div>
+    </main>
+        <div id="footer-placeholder"></div>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,75 +1,78 @@
-# 个人博客网站
+# 智汇学阁 (MyWeb)
 
-一个使用纯HTML、CSS和JavaScript构建的个人博客网站。
+一个使用纯 HTML、CSS 和 JavaScript 构建的现代个人博客与数据集分享网站。
 
 ## 项目结构
 
 ```
 MyWeb/
-├── index.html          # 首页（博客文章列表）
-├── about.html          # 关于页面
-├── 404.html            # 404错误页面
-├── swimming.html       # 游泳数据页面（原有页面）
-├── css/
-│   └── style.css      # 主样式文件
-├── js/
-│   └── main.js        # 主JavaScript文件
-├── posts/             # 博客文章目录
-│   ├── post1.html     # 如何开始学习编程
-│   ├── post2.html     # 生活中的小确幸
-│   ├── post3.html     # 前端开发最佳实践
-│   ├── post4.html     # 推荐阅读：2024年必读书单
-│   ├── post5.html     # 设计思维在工作中的应用
-│   └── post6.html     # 我的2023年度总结
+├── components/        # 公共组件 (Header, Footer)
+├── css/               # 样式文件
+│   └── style.css      # 全局样式与 CSS 变量
+├── images/            # 图片资源
+├── js/                # 脚本文件
+│   ├── layout.js      # 布局加载与组件化逻辑
+│   └── main.js        # 页面交互与动画逻辑
+├── page/              # 页面文件
+│   ├── datasets/      # 数据集详情页
+│   │   └── crawler/   # 爬虫练习数据集
+│   ├── error/         # 错误页面
+│   │   ├── 404.html   # 404 Not Found
+│   │   └── 50x.html   # 500/502/503 Server Error
+│   ├── posts/         # 博客文章
+│   │   ├── post1.html # 如何开始学习编程
+│   │   ├── ...        # 其他文章
+│   │   └── post6.html # 我的2023年度总结
+│   ├── about.html     # 关于页面
+│   ├── datasets.html  # 数据集中心
+│   ├── index.html     # 首页（博客列表）
+│   └── resources.html # 资源分享页
 └── README.md          # 项目说明文件
 ```
 
 ## 功能特点
 
-- ✅ 响应式设计，支持各种设备
-- ✅ 清晰的导航结构
-- ✅ 美观的UI设计
-- ✅ 文章列表和详情页
-- ✅ 关于页面
-- ✅ 平滑滚动和动画效果
+- **组件化开发**：使用原生 JavaScript 实现 Header 和 Footer 的动态加载，易于维护。
+- **响应式设计**：适配桌面端和移动端，提供流畅的阅读体验。
+- **现代 UI**：采用磨砂玻璃效果、卡片式布局和优雅的过渡动画。
+- **数据集中心**：提供结构化的体育赛事数据（如全运会游泳、乒乓球等），供爬虫练习使用。
+- **无依赖**：无需构建工具，无需后端服务器，即开即用。
 
 ## 使用方法
 
-1. 直接在浏览器中打开 `index.html` 即可查看网站
-2. 所有文件都是静态的，无需服务器即可运行
-3. 可以根据需要修改内容和样式
+1. **启动**：直接在浏览器中打开 `page/index.html` 即可访问网站首页。
+   > 注意：由于使用了 `fetch` API 加载组件，建议通过本地服务器（如 VS Code 的 Live Server 插件）运行，以避免浏览器的跨域限制 (CORS)。
+2. **部署**：将整个项目文件夹上传至任何静态网页托管服务（如 GitHub Pages, Vercel, Netlify）即可。
 
-## 自定义
+## 自定义指南
 
-### 修改博客信息
-
-- 编辑 `index.html` 修改博客标题和导航
-- 编辑 `about.html` 修改个人信息
-- 在 `posts/` 目录下添加或修改文章
+### 修改内容
+- **首页文章**：编辑 `page/index.html` 中的 `.grid-layout` 部分。
+- **文章内容**：在 `page/posts/` 目录下修改或添加 HTML 文件。
+- **导航栏/页脚**：修改 `components/header.html` 或 `components/footer.html`，所有页面会自动更新。
 
 ### 修改样式
+- 编辑 `css/style.css`。
+- 可以在 `:root` 选择器中快速修改全局主题色（`--primary-color` 等）。
 
-- 编辑 `css/style.css` 修改网站样式
-- 所有颜色和样式变量都在CSS文件顶部定义
-
-### 添加新文章
-
-1. 在 `posts/` 目录下创建新的HTML文件
-2. 参考现有文章的结构
-3. 在 `index.html` 中添加文章卡片链接
+### 添加新页面
+1. 在 `page/` 目录下创建新的 HTML 文件。
+2. 引入 `layout.js` 和 `style.css`。
+3. 配置 `window.PAGE_CONFIG` 以确保路径正确：
+   ```html
+   <script>
+       window.PAGE_CONFIG = {
+           rootPath: '../', // 根据文件层级调整
+           activePage: 'your-page-id'
+       };
+   </script>
+   ```
 
 ## 技术栈
 
 - HTML5
-- CSS3
-- JavaScript (ES6+)
-
-## 浏览器支持
-
-- Chrome (推荐)
-- Firefox
-- Safari
-- Edge
+- CSS3 (CSS Variables, Flexbox, Grid)
+- JavaScript (ES6+, Fetch API, IntersectionObserver)
 
 ## 许可证
 
