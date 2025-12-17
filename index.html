@@ -1,40 +1,166 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>恭喜陈正祥，站点创建成功！</title>
-    <style>
-        .container {
-            width: 60%;
-            margin: 10% auto 0;
-            background-color: #f0f0f0;
-            padding: 2% 5%;
-            border-radius: 10px
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-            ul li {
-                line-height: 2.3
-            }
-
-        a {
-            color: #20a53a
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智汇学阁 - 首页</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>智汇学阁</h1>
-        <h2>欢迎来到陈正祥的网址！</h2>
-        <h3>这是默认index.html，本页面由系统自动生成</h3>
-        <ul>
-            <li>本页面在FTP根目录下的index.html</li>
-            <li>您可以修改、删除或覆盖本页面</li>
-            <li>FTP相关信息，请到“面板系统后台 > FTP” 查看</li>
-        </ul>
-    </div>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">智汇学阁</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="resources.html">资源</a></li>
+                <li><a href="datasets.html">数据集</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <header class="page-header">
+        <h1>欢迎来到智汇学阁</h1>
+        <p>分享生活、技术和思考</p>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        <!-- 博客文章列表 -->
+        <div class="blog-list">
+            <!-- 文章卡片 1 -->
+            <a href="posts/post1.html" class="blog-card">
+                <div class="blog-card-image">📝</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">如何开始学习编程</h2>
+                    <div class="blog-card-meta">
+                        <span>2024年1月15日</span>
+                        <span>•</span>
+                        <span>技术</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        编程是一门需要持续学习和实践的技能。本文将分享一些学习编程的方法和资源，帮助初学者快速入门...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">编程</span>
+                        <span class="tag">学习</span>
+                        <span class="tag">入门</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 文章卡片 2 -->
+            <a href="posts/post2.html" class="blog-card">
+                <div class="blog-card-image">🌱</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">生活中的小确幸</h2>
+                    <div class="blog-card-meta">
+                        <span>2024年1月10日</span>
+                        <span>•</span>
+                        <span>生活</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        生活中总有一些小小的美好时刻，值得我们停下来感受和珍惜。今天想和大家分享一些让我感到幸福的小事...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">生活</span>
+                        <span class="tag">感悟</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 文章卡片 3 -->
+            <a href="posts/post3.html" class="blog-card">
+                <div class="blog-card-image">💡</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">前端开发最佳实践</h2>
+                    <div class="blog-card-meta">
+                        <span>2024年1月5日</span>
+                        <span>•</span>
+                        <span>技术</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        在前端开发中，遵循一些最佳实践可以让代码更加清晰、可维护。本文将介绍一些实用的前端开发技巧...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">前端</span>
+                        <span class="tag">开发</span>
+                        <span class="tag">最佳实践</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 文章卡片 4 -->
+            <a href="posts/post4.html" class="blog-card">
+                <div class="blog-card-image">📚</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">推荐阅读：2024年必读书单</h2>
+                    <div class="blog-card-meta">
+                        <span>2023年12月28日</span>
+                        <span>•</span>
+                        <span>阅读</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        阅读是提升自我的最好方式之一。这里整理了一些值得一读的好书，涵盖技术、人文、心理学等多个领域...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">阅读</span>
+                        <span class="tag">书单</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 文章卡片 5 -->
+            <a href="posts/post5.html" class="blog-card">
+                <div class="blog-card-image">🎨</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">设计思维在工作中的应用</h2>
+                    <div class="blog-card-meta">
+                        <span>2023年12月20日</span>
+                        <span>•</span>
+                        <span>设计</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        设计思维不仅仅适用于设计师，它也可以帮助我们更好地解决问题、创新思考。本文将探讨设计思维的核心概念...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">设计</span>
+                        <span class="tag">思维</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 文章卡片 6 -->
+            <a href="posts/post6.html" class="blog-card">
+                <div class="blog-card-image">🚀</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">我的2023年度总结</h2>
+                    <div class="blog-card-meta">
+                        <span>2023年12月31日</span>
+                        <span>•</span>
+                        <span>总结</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        2023年即将结束，回顾这一年，有收获也有成长。在这里记录一下这一年的经历和感悟，为2024年做好准备...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">总结</span>
+                        <span class="tag">年度回顾</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2024 智汇学阁. 保留所有权利.</p>
+        <p>作者：补药压力我 | 邮箱：<a href="mailto:zhengxiang_chen@foxmail.com" style="color: var(--secondary-color);">zhengxiang_chen@foxmail.com</a></p>
+        <p>Powered by HTML & CSS</p>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

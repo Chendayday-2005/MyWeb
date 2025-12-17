@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爬虫专用数据集 - 智汇学阁</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">智汇学阁</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../about.html">关于</a></li>
+                <li><a href="../resources.html">资源</a></li>
+                <li><a href="../datasets.html">数据集</a></li>
+            </ul>
+            </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <header class="page-header">
+        <h1>爬虫专用数据集</h1>
+        <p>专门为爬虫学习和练习准备的数据集，包含结构化的HTML数据、表格数据等</p>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        <!-- 爬虫数据集列表 -->
+        <div class="blog-list">
+            <!-- 游泳比赛数据 -->
+            <a href="crawler/swimming.html" class="blog-card">
+                <div class="blog-card-image">🏊</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">游泳比赛数据</h2>
+                    <div class="blog-card-meta">
+                        <span>体育数据</span>
+                        <span>•</span>
+                        <span>比赛成绩</span>
+            </div>
+                    <p class="blog-card-excerpt">
+                        第十五届中华人民共和国全运会游泳专项成绩排名数据，包含325条记录，
+                        41个比赛项目，25个参赛代表团，适合用于爬虫技术的学习和测试...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">爬虫</span>
+                        <span class="tag">体育数据</span>
+                        <span class="tag">表格数据</span>
+        </div>
+                </div>
+            </a>
+
+            <!-- 预留接口：其他爬虫数据集可以在这里添加 -->
+            <!-- 
+            <a href="crawler/example.html" class="blog-card">
+                <div class="blog-card-image">📊</div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">示例数据集</h2>
+                    <div class="blog-card-meta">
+                        <span>示例</span>
+                        <span>•</span>
+                        <span>数据</span>
+                </div>
+                    <p class="blog-card-excerpt">
+                        这是一个示例数据集，用于展示如何添加新的爬虫专用页面...
+                    </p>
+                    <div class="blog-card-tags">
+                        <span class="tag">爬虫</span>
+                        <span class="tag">示例</span>
+                </div>
+                </div>
+            </a>
+            -->
+        </div>
+        
+        <!-- 使用说明 -->
+        <div class="about-section" style="margin-top: 3rem;">
+            <h2>📋 使用说明</h2>
+            <p>
+                本页面提供各种爬虫专用数据集，主要用于爬虫技术的学习和练习。
+                所有数据集都保持原始状态，未进行数据清洗，适合用于爬虫练习。
+            </p>
+            <h3>数据集特点</h3>
+            <ul>
+                <li><strong>原始数据：</strong>数据完全保持原始状态，未进行任何清洗或填充处理</li>
+                <li><strong>结构化数据：</strong>包含清晰的HTML结构和表格数据，便于爬虫解析</li>
+                <li><strong>缺失值处理：</strong>部分数据集包含缺失值，可用于练习缺失值处理</li>
+                <li><strong>多样化结构：</strong>包含不同类型的页面结构，适合不同难度的爬虫练习</li>
+            </ul>
+            <h3>如何添加新数据集</h3>
+            <p>要添加新的爬虫专用页面，请：</p>
+            <ol>
+                <li>在 <code>datasets/crawler/</code> 目录下创建新的HTML文件</li>
+                <li>在本页面的 <code>blog-list</code> 中添加新的 <code>blog-card</code> 卡片</li>
+                <li>按照现有格式设置标题、描述和标签</li>
+            </ol>
+            </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2024 智汇学阁. 保留所有权利.</p>
+        <p>作者：补药压力我 | 邮箱：<a href="mailto:zhengxiang_chen@foxmail.com" style="color: var(--secondary-color);">zhengxiang_chen@foxmail.com</a></p>
+        <p>Powered by HTML & CSS</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
