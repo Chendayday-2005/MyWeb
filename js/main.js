@@ -34,13 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 20) {
-                // 滚动时：增加一点阴影，背景保持磨砂白
-                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
-                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                navbar.classList.add('scrolled');
             } else {
-                // 顶部时：背景稍微透明一点，阴影减弱
-                navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
-                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
+                navbar.classList.remove('scrolled');
             }
         });
     }
@@ -76,5 +72,103 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('componentsLoaded', () => {
         initNavbarEffect();
         hideLinkUrls(); // 针对动态加载的 Header/Footer
+        initTheme();    // 初始化主题
+        initSearch();   // 初始化搜索
     });
+
+    // --- 新增功能 ---
+
+    // 1. 暗黑模式
+    function initTheme() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (!toggleBtn) return;
+        
+        const iconSun = toggleBtn.querySelector('.icon-sun');
+        const iconMoon = toggleBtn.querySelector('.icon-moon');
+        
+        // 检查本地存储或系统偏好
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            iconSun.style.display = 'none';
+            iconMoon.style.display = 'inline';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                iconSun.style.display = 'inline';
+                iconMoon.style.display = 'none';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'inline';
+            }
+        });
+    }
+
+    // 2. 站内搜索
+    function initSearch() {
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        if (!searchInput || !searchResults) return;
+
+        const root = window.PAGE_CONFIG ? window.PAGE_CONFIG.rootPath : '../';
+
+        // 搜索数据源 (手动维护)！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+        const data = [
+            { title: "如何开始学习编程", url: "posts/post1.html", desc: "编程入门指南，Python/JS推荐" },
+            { title: "生活中的小确幸", url: "posts/post2.html", desc: "发现生活中的美好时刻" },
+            { title: "前端开发最佳实践", url: "posts/post3.html", desc: "组件化、性能优化、代码规范" },
+            { title: "2024年必读书单", url: "posts/post4.html", desc: "技术、思维与人文社科好书推荐" },
+            { title: "设计思维在工作中的应用", url: "posts/post5.html", desc: "共情、定义、构思、原型、测试" },
+            { title: "我的2023年度总结", url: "posts/post6.html", desc: "回顾成长，展望未来" },
+            { title: "数据集中心", url: "datasets.html", desc: "爬虫练习专用数据集" },
+            { title: "全运会游泳数据", url: "datasets/crawler/swimming.html", desc: "第十五届全运会游泳项目排名" },
+            { title: "全运会乒乓球数据", url: "datasets/crawler/table_tennis.html", desc: "第十五届全运会乒乓球项目排名" },
+            { title: "全运会艺术体操数据", url: "datasets/crawler/rhythmic_gymnastics.html", desc: "第十五届全运会艺术体操项目排名" }
+            // ... 添加更多数据
+        ];
+
+        const handleSearch = (query) => {
+            query = query.toLowerCase().trim();
+            if (!query) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const filtered = data.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query)
+            );
+
+            if (filtered.length > 0) {
+                searchResults.innerHTML = filtered.map(item => `
+                    <a href="${root}page/${item.url}" class="search-item">
+                        <div class="search-item-title">${item.title}</div>
+                    </a>
+                `).join('');
+                searchResults.classList.add('active');
+            } else {
+                searchResults.innerHTML = '<div class="search-item" style="color:var(--text-secondary)">无搜索结果</div>';
+                searchResults.classList.add('active');
+            }
+        };
+
+        searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+        
+        searchInput.addEventListener('focus', (e) => handleSearch(e.target.value));
+
+        // 点击外部关闭搜索结果
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.remove('active');
+            }
+        });
+    }
 });

@@ -10,5 +10,21 @@
             <li><a href="{root}page/resources.html" data-page="resources">资源</a></li>
             <li><a href="{root}page/about.html" data-page="about">关于</a></li>
         </ul>
+        
+        <!-- 右侧功能区 -->
+        <div class="nav-actions">
+            <!-- 搜索框 -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="搜索文章...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+            
+            <!-- 主题切换按钮 -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
+                <span class="icon-sun">☀️浅色</span>
+                <span class="icon-moon" style="display: none;">🌙深色</span>
+                <!-- <span class="theme-text">主题</span> -->
+            </button>
+        </div>
     </div>
 </nav>

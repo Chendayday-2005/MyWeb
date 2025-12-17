@@ -29,6 +29,44 @@
     --container-width: 1100px;
 }
 
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --primary-color: #3b82f6;       /* 稍亮的蓝 */
+    --primary-hover: #60a5fa;
+    --secondary-color: #38bdf8;
+    
+    --text-main: #f1f5f9;           /* 亮白 */
+    --text-secondary: #cbd5e1;      /* 浅灰 */
+    --text-light: #94a3b8;
+
+    --bg-body: #0f172a;             /* 深蓝黑背景 */
+    --bg-card: #1e293b;             /* 深色卡片 */
+    --bg-nav: rgba(15, 23, 42, 0.85);
+
+    --border-color: #334155;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* 表格浅色模式变量 (默认) */
+:root {
+    --table-bg: #ffffff;
+    --table-border: #e2e8f0;
+    --table-header-bg: #f8fafc;
+    --table-hover-bg: #f1f5f9;
+    --table-stripe-bg: #f9fafb;
+}
+
+/* 表格深色模式变量 */
+[data-theme="dark"] {
+    --table-bg: var(--bg-card);
+    --table-border: var(--border-color);
+    --table-header-bg: #334155;
+    --table-hover-bg: #1e293b; /* 稍微亮一点或暗一点 */
+    --table-stripe-bg: #1e293b;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -99,6 +137,7 @@ ul {
     display: flex;
     align-items: center;
     box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-container {
@@ -106,9 +145,9 @@ ul {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; /* 左中右布局，中间自适应内容 */
+    display: flex; /* 改为 Flex 布局，避免 Grid 导致的重叠问题 */
     align-items: center;
+    justify-content: space-between; /* 两端对齐 */
 }
 
 .logo {
@@ -118,8 +157,7 @@ ul {
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--text-main);
-    grid-column: 1; /* Logo 在左侧 */
-    justify-self: start;
+    flex-shrink: 0; /* 防止 Logo 被压缩 */
 }
 
 .nav-logo-img {
@@ -131,8 +169,9 @@ ul {
 .nav-links {
     display: flex;
     gap: 2rem;
-    grid-column: 2; /* 链接在中间 */
-    justify-self: center;
+    position: absolute; /* 绝对定位以确保居中 */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -327,6 +366,116 @@ ul {
 }
 
 /* =========================================
+   7. 导航栏右侧功能区 (搜索 & 主题)
+   ========================================= */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0; /* 防止功能区被压缩 */
+}
+
+/* 搜索框 */
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    width: 180px; /* 稍微调小宽度，避免拥挤 */
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    width: 220px; /* 聚焦时展开 */
+}
+
+/* 搜索结果下拉 */
+.search-results {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1001;
+    display: none; /* 默认隐藏 */
+    padding: 0.15rem 0;
+}
+
+.search-results.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.search-item {
+    display: block;
+    padding: 0.2rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;    font-size: 0.85rem; /* 统一字体大小 */}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background-color: var(--bg-body); /* 使用 body 背景作为悬停色 */
+}
+
+[data-theme="dark"] .search-item:hover {
+    background-color: #334155; /* 深色模式下的悬停高亮 */
+}
+
+.search-item-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.85rem; /* 缩小标题字体 */
+    margin-bottom: 0;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* 圆角按钮 */
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.theme-text {
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: #334155;
+}
+
+/* =========================================
    6. 页脚
    ========================================= */
 .footer {
@@ -344,8 +493,48 @@ ul {
 }
 
 /* =========================================
-   7. 动画
+   8. 表格样式 (全局)
    ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: var(--table-bg);
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+th, td {
+    border: 1px solid var(--table-border);
+    padding: 12px 16px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+tr:hover {
+    background-color: var(--table-hover-bg);
+}
+
+/* 斑马纹/特殊单元格适配 */
+.highlight-cell {
+    background-color: var(--table-stripe-bg);
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* 响应式表格 */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
